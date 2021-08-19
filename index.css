@@ -1,0 +1,187 @@
+#container {
+  /* margin: auto; (這樣放只會讓左右位置置中；上下不會) */
+  padding: 70px 70px;
+  position: absolute;
+  left: 50vw;
+  transform: translateX(-50%);
+  /* cellspacing: 10px; (為什麼這樣寫沒有作用? 因為這是要下在 table 標籤內的東西，我下在 div 標籤裡) */
+}
+
+.squares {
+  width: 180px;
+  height: 180px;
+  border: solid 1px black;
+}
+
+.red {
+  background: red;
+}
+
+.blue {
+  background: blue;
+}
+
+.gura-1 {
+  background: url(./Gura/1.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.gura-2 {
+  background: url(./Gura/2.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.gura-3 {
+  background: url(./Gura/3.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.gura-4 {
+  background: url(./Gura/4.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.gura-5 {
+  background: url(./Gura/5.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.gura-6 {
+  background: url(./Gura/6.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.gura-7 {
+  background: url(./Gura/7.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.gura-8 {
+  background: url(./Gura/8.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.gura-9 {
+  background: url(./Gura/9.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.ame-1 {
+  background: url(./Ame/1.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ame-2 {
+  background: url(./Ame/2.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ame-3 {
+  background: url(./Ame/3.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ame-4 {
+  background: url(./Ame/4.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ame-5 {
+  background: url(./Ame/5.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ame-6 {
+  background: url(./Ame/6.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ame-7 {
+  background: url(./Ame/7.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ame-8 {
+  background: url(./Ame/8.webp);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ame-9 {
+  background: url(./Ame/9.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.ina-1 {
+  background: url(./Ina/1.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ina-2 {
+  background: url(./Ina/2.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ina-3 {
+  background: url(./Ina/3.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ina-4 {
+  background: url(./Ina/4.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ina-5 {
+  background: url(./Ina/5.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ina-6 {
+  background: url(./Ina/6.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ina-7 {
+  background: url(./Ina/7.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ina-8 {
+  background: url(./Ina/8.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ina-9 {
+  background: url(./Ina/9.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

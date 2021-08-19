@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <audio controls loop hidden id="audio1">
+        <source src="./Gura/Story_Gura.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+    <source src="./Ame/Story_Ame.mp3" type="audio/mpeg">
+        
+    <div id="container">
+        <span>[請選擇喜好的主題]</span>
+        <input type="radio" name="theme" value="gura-" checked> Gawr Gura 
+        <input type="radio" name="theme" value="ame-"> Amelia Watson
+        <input type="radio" name="theme" value="ina-"> Ninomae Ina'nis
+        <br><br>
+
+
+        <!-- 為什麼在下面這行下樣式不需要使用 stlye="" 的形式 -->
+        <!-- 因為 table 有自己的 html 樣式，有點算是特例 -->
+        <table>
+            <tr>
+                <td class="squares" id="square7"></td>
+                <td class="squares" id="square8"></td>
+                <td class="squares" id="square9"></td>
+            </tr>
+            <tr>
+                <td class="squares" id="square4"></td>
+                <td class="squares" id="square5"></td>
+                <td class="squares" id="square6"></td>
+            </tr>
+            <tr>
+                <td class="squares" id="square1"></td>
+                <td class="squares" id="square2"></td>
+                <td class="squares" id="square3"></td>
+            </tr>
+        </table>
+        <br>
+
+        <!-- 如何透過調整行距來製造空格  -->
+        <br>
+        <input type="button" value="開始遊戲" id="btnStart">
+        <br>
+        <br>
+
+        你目前得到 <span id=playerScore>0</span> 分
+        <br>
+        <br>
+
+        你還剩 <span id="timeLabel">30</span> 秒
+        <br>
+        <br>
+        <hr>
+        <br>
+
+        紀錄保持人: <span id="textRecordName">無紀錄</span>
+        <br>
+        <br>
+        最高分紀錄: <span id="textRecordScore">無紀錄</span>
+    </div>
+
+    <script>
+        // 抓取 body 元素進來 Javascript 
+        const squares = document.getElementsByClassName('squares')
+        const btnStart = document.getElementById('btnStart')
+        const playerScore = document.getElementById('playerScore')
+        const timeLabel = document.getElementById('timeLabel')
+        const textRecordName = document.getElementById('textRecordName')
+        const textRecordScore = document.getElementById('textRecordScore')
+
+        const audioStory = document.getElementById('audio1')
+        const audioWin = new Audio() // 宣告 audio 為音訊常數 
+        audioWin.src = './rihai.mp3' // 設定 Javascript 執行音訊檔來源 
+
+        let score = 0 // 宣告玩家得分的 score 變數
+        let timer = 30 // 宣告倒數計時器的 timer 變數 
+        let timeInterval = 0 // 宣告時段變換器的 timeInterval 變數 
+        let recordScore = { name: '', score: 0 } // 宣告最高分紀錄 JSON
+
+        const recordStorage = JSON.parse(localStorage.getItem('wam')) // 宣告紀錄最高分的本機儲存空間 
+        // 如果最高紀錄不是空值，則將最高紀錄代入
+        if (recordStorage !== null) {
+            recordScore = recordStorage
+            textRecordName.innerText = textRecordScore.name
+            textRecordScore.innerText = recordScore.score
+        }
+
+        // 載入網頁時的初始設定（方匡背景顏色）
+        for (const square of squares) {
+            // 在這邊對指定物件填入的樣式名稱是事先在 style 定義好的樣式。
+            square.removeAttribute('class')
+            square.classList.add('squares')
+        }
+
+        // 設定 game function 
+        const game = () => {
+            // 清除所有方格的顏色 
+            for (const square of squares) {
+                // 在這邊對指定物件填入的樣式名稱是事先在 style 定義好的樣式。
+                square.removeAttribute('class')
+                square.classList.add('squares')
+            }
+
+            // 在1~3個隨機方格中填入顏色（藍色） 
+            for (let i = 0; i < 3; i++) {
+                const random = Math.floor(Math.random() * 9)
+                squares[random].classList.add('blue')
+            }
+
+            // 更新倒數計時器的 timer 變數 
+            timer--
+            timeLabel.innerText = timer
+
+            // 設定時間到後的程式碼 
+            if (timer <= 0) {
+                clearInterval(timeInterval)
+                alert(`你總共得到 ${score} 分`)
+
+                // 如果分數超越最高分數，則將最高分數取代 
+                if (score > recordScore.score) {
+                    audioWin.play()
+                    recordScore.score = score
+                    recordScore.name = prompt('你打破最高分紀錄! 請輸入你的名字')
+                    if (recordScore.name === null || recordScore.name.length === 0) {
+                        recordScore.name = '???'
+                    }
+                    localStorage.setItem('wam', JSON.stringify(recordScore)) // 更新最高分紀錄的本機儲存空間 
+                    textRecordName.innerText = recordStorage.name // 更新紀錄保持人文字內容 
+                    textRecordScore.innerText = recordStorage.score // 更新最高分紀錄文字內容 
+                }
+
+                // 重設方匡的 class 樣式 
+                for (const square of squares) {
+                    // 在這邊對指定物件填入的樣式名稱是事先在 style 定義好的樣式。
+                    square.removeAttribute('class')
+                    square.classList.add('squares')
+                    console.log(square.classList)
+                }
+
+                // 重新啟用開始遊戲按鈕 
+                btnStart.disabled = false
+            }
+        }
+
+        var radios = document.getElementsByName('theme');
+        var selected;
+        
+        // 設定開始遊戲按鈕被按下後的反應 
+        btnStart.onclick = () => {
+            // 暫停開始遊戲按鈕功能 
+            btnStart.disabled = true
+
+            // 設定顯示文字 
+            score = 0
+            playerScore.innerText = score
+            timer = 31
+            timeLabel.innerText = timer
+
+            // 抓出玩家選擇的主題樣式 
+            for(var i = 0, count = radios.length; i < count; i++){
+                if(radios[i].checked){
+                    selected = radios[i].value;
+                    console.log(selected)
+                    break;
+                }
+            }
+
+            // 設定背景故事播放 
+            const timerStory = setInterval(() => {
+                
+                if (selected == 'gura-') {
+                    audioStory.setAttribute("src", "./Gura/Story_Gura.mp3")
+                } else if (selected == 'ame-') {
+                    audioStory.setAttribute("src", "./Ame/Story_Ame.mp3")
+                } else if (selected == 'ina-') {
+                    audioStory.setAttribute("src", "./Ina/Story_Ina.mp3")
+                }
+                
+                audioStory.play().then(() => {
+                    clearInterval(timerStory)
+                }).catch(() => {
+                })
+            }, 100)
+
+            // 載入 game function 
+            game()
+            timeInterval = setInterval(game, 1000)
+        }
+
+        // 設定遊戲過程中方框被按下後的反應 
+        for (const i in squares) {
+            squares[i].onclick = () => {
+                if (squares[i].classList.contains('blue')) {
+                    squares[i].setAttribute("class", "squares");
+                    squares[i].classList.add(`${selected}${i}`)
+                    score++
+                    playerScore.innerText = score
+                }
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
